@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <td>Fecha de Nacimiento : </td>
-                            <td><input type="date" name="Fecha_nac" value="<jsp:getProperty name="user" property="fechaNac"/>"></td>
+                            <td><input type="date" name="fecha_nac" value="<jsp:getProperty name="user" property="fechaNac"/>"></td>
                         </tr>
                         <tr>
                             <td><center><input type="reset" value="Reset" /></center></td>
