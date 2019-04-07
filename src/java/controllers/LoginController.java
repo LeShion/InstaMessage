@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet
 
                 user.setUser(request.getParameter("user"));
                 user.setPwd(request.getParameter("pwd"));
-
+                
                 if(User.LoginUser(request.getParameter("user"),request.getParameter("pwd")))
                 {
                     User us = new User();
@@ -38,8 +38,21 @@ public class LoginController extends HttpServlet
                 }  
                 else
                 {
-                    out.println("Usuario o Contraseña incorrecto!");
-                    out.println("<a href=\"login_form.jsp\">Intentalo de Nuevo...</a>");
+                    out.println("<script src='js/sweetalert2.js'></script>");
+                    out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                    out.println("<script>");
+                    out.println("$(document).ready(function(){");
+                    if("".equals(request.getParameter("user"))){
+                        out.println("swal ( '¡Falta Usuario!' ,  ' ' ,  'error' );");
+                    }else if("".equals(request.getParameter("pwd"))){
+                        out.println("swal ( '¡Falta Contraseña!' ,  ' ' ,  'error' );");
+                    }else{
+                        out.println("swal ( '¡CREDENCIALES INVALIDAS!' ,  ' ' ,  'error' );");
+                    }
+                    out.println("});");
+                    out.println("</script>");
+                    RequestDispatcher rd = request.getRequestDispatcher("login_form.jsp");
+	       	    rd.include(request, response);
                 }    
             } finally {out.close();}
         }

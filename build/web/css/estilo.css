@@ -1,0 +1,154 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background: url(../imagen/fondo2.jpg);
+}
+#contenedor1{
+    background: rgba(0,0,0,.6);
+    width: 460px;
+    margin: 48px auto;
+    margin-top: 70px;
+    border-radius: 5px;
+    padding: 40px;
+    
+}
+
+#contenedor2{
+    background: rgba(0,0,0,.6);
+    width: 460px;
+    margin: 48px auto;
+    margin-top: 70px;
+    border-radius: 5px;
+    padding: 40px;
+    
+}
+
+#form1{
+    width: 100%;
+    padding: 50px 20px 10px 20px;
+    box-sizing: border-box; 
+}
+
+#form2{
+    width: 100%;
+    padding: 50px 20px 10px 20px;
+    box-sizing: border-box; 
+}
+
+#contenedor1 h1{
+    text-align: center;
+    padding-top: 5px;
+    color: #E1DFDF;
+    font-size: 45px;
+}
+
+#contenedor2 h1{
+    text-align: center;
+    padding-top: 3px;
+    color: #E1DFDF;
+    font-size: 35px;
+}
+
+#form1 input[type="text"],
+#form1 input[type="password"]{
+    outline: none;
+    text-align: center;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 3px solid #F3F3F3;
+    margin: 0 0 10px 0;
+    
+}
+
+#form2 input[type="text"],
+#form2 input[type="password"],
+#form2 input[type="date"]{
+    outline: none;
+    text-align: center;
+    background: rgba(0,0,0,.3);
+    color: #fff;
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 3px solid #F3F3F3;
+    margin: 0 0 8px 0;
+    
+}
+
+#form1 input[type="submit"]{
+    width: 100%;
+    height: 55px;
+    background: #E1DFDF;
+    color: #454545;
+    cursor: pointer;
+    border: 2px solid #F3F3F3;
+    font-size: 25px;
+    font-weight: 900;
+}
+#form1 input[type="submit"]:hover{
+    background: #F6F5F5;
+}
+
+#form2 input[type="submit"]{
+    width: 55%;
+    height: 35px;
+    background: #E1DFDF;
+    color: #454545;
+    cursor: pointer;
+    border: 2px solid #1A2F8E;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+#form2 input[type="reset"]{
+    width: 55%;
+    height: 35px;
+    background: #E1DFDF;
+    color: #454545;
+    cursor: pointer;
+    border: 2px solid #9E3A2A;
+    font-size: 15px;
+    font-weight: 900;
+}
+#form2 input[type="submit"]:hover{
+    background: #F6F5F5;
+}
+
+#form2 input[type="reset"]:hover{
+    background: #F6F5F5;
+}
+
+#contenedor1 a{
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 60px;
+    color: #F3F3F3;
+}
+
+#contenedor1 a:hover{
+    text-decoration: underline;
+    font-size: 16px;
+    color: #F6F5F5;
+}
+
+#contenedor2 a{
+    text-decoration: none;
+    font-size: 15px;
+    padding-left: 400px;
+    color: #F3F3F3;
+}
+
+#contenedor2 a:hover{
+    text-decoration: underline;
+    font-size: 16px;
+    color: #F6F5F5;
+}

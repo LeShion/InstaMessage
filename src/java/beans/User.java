@@ -103,7 +103,7 @@ public class User
             Db_Connection dbconn=new Db_Connection();
             Connection myconnection= dbconn.Connection();
 
-            String sqlString="INSERT INTO Usuario (Nombre,Apellido,Alias,Contrasenia,Pregunta,Rsecreta,Fecha_nac) VALUES ('"+first_name+"','"+last_name+"','"+user+"','"+pwd+"','"+pSecreta+"','"+rSecreta+"','"+fecha_nac+"')";
+            String sqlString="INSERT INTO Usuario (Nombre,Apellido,Alias,Contrasenia,Pregunta,Rsecreta,Fecha_nac) VALUES ('"+first_name+"','"+last_name+"','"+user+"@instam.com"+"','"+pwd+"','"+pSecreta+"','"+rSecreta+"','"+fecha_nac+"')";
             
             Statement myStatement = myconnection.createStatement();
             
