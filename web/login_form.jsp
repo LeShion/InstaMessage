@@ -25,7 +25,7 @@
                 <input type="submit" value="Entrar">
                 <br><br>
                 <a href="register_form.jsp">Registrate</a>
-                <a href="register_form.jsp">¿Has olvidado tu contraseña?</a> 
+                <a href="index.jsp">¿Has olvidado tu contraseña?</a> 
                 
             </form>
         </div>

@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet
                     HttpSession sessionUser = request.getSession();
                     sessionUser.setAttribute("user",us.getUser());
 
-                    RequestDispatcher rd1 = request.getRequestDispatcher("welcome_page.jsp");
+                    RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
                     rd1.forward(request,response);
                 }  
                 else
