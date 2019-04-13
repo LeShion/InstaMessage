@@ -10,12 +10,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>InstaMessageMail</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
 
 </head>
@@ -64,9 +64,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+         <!--    <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
-            </li>
+            </li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Opciones
@@ -81,7 +81,7 @@
         </div>
       </nav>
       
-        <div class="bd-example">
+<!--        <div class="bd-example">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -116,7 +116,23 @@
   </div>
 </div>
         
-    </div>
+    </div>-->
+
+<div class="welcome" align="center" width="100%" height="100%">
+    
+    <h1 class="display-4">La nueva generación de correo electronico.</h1>
+            <hr color="white" class="my-4">
+            <h4>Conoce más acerca de nuestra plataforma: </h4>
+</div>
+<div class="info-container">
+    <br><br>
+    <p>InstaMessage es una plataforma de gestion de correo rápida y versátil,
+            donde podras tener toda tu información al alcance de un click. </p>
+    <br>
+    <p>En nuestra plataforma puedes acceder a todos tus correos desde nuestro menu principal,
+    donde puedes encontrar tu "Bandeja de Entrada", "Bandeja de Salida", tus "Correos Eliminados",
+    La "Clasificacion" y tus "Borradores". Ya nada se perderá entre tus correos!</p>
+</div>
     <!-- /#page-content-wrapper -->
 
   </div>
