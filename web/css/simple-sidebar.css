@@ -27,6 +27,13 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
+  background: url(../imagen/indexback2.jpg)no-repeat;
+}
+
+#page-content-wrapper .info-container{
+    margin-left: 150px;
+    width: 80%;
+    text-align: center;
 }
 
 #wrapper.toggled #sidebar-wrapper {
