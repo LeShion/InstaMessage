@@ -37,10 +37,10 @@
       
       <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/> <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %></div>
       <div class="list-group list-group-flush">
-        <a href="/InstaMessageMail/inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Entrada</a>
-        <a href="/InstaMessageMail/outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Salida</a>
-        <a href="/InstaMessageMail/removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Correos Eliminados</a>
-        <a href="/InstaMessageMail/draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Borradores</a>
+        <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Entrada</a>
+        <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Salida</a>
+        <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Correos Eliminados</a>
+        <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Borradores</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
