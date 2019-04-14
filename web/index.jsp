@@ -37,11 +37,10 @@
       
       <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/> <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %></div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Entrada</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Salida</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Correos Eliminados</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Clasificacion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Borradores</a>
+        <a href="/InstaMessageMail/inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Entrada</a>
+        <a href="/InstaMessageMail/outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Salida</a>
+        <a href="/InstaMessageMail/removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Correos Eliminados</a>
+        <a href="/InstaMessageMail/draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Borradores</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -62,7 +61,7 @@
             </div>
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/InstaMessageMail/index.jsp">Inicio<span class="sr-only">(current)</span></a>
             </li>
          <!--    <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
