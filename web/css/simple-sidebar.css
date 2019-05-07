@@ -27,7 +27,7 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
-  background: url(../imagen/indexback2.jpg)no-repeat;
+  background: url(../imagen/indexback2.jpg);
 }
 
 #page-content-wrapper .info-container{
