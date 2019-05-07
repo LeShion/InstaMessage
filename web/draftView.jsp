@@ -35,12 +35,17 @@
             user_of_InstaMessage.GetUser();     
         %>
       
-      <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/> <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %></div>
+      <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/>
+            <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %><br>
+            <h6><%= user_of_InstaMessage.getUser()%></h6>
+      </div>
+      
       <div class="list-group list-group-flush">
-        <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Entrada</a>
-        <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Salida</a>
-        <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Correos Eliminados</a>
-        <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white">Borradores</a>
+        <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
+        <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
+        <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
+        <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
+        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a>  
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -71,7 +76,7 @@
                 Opciones
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Actualizar Datos</a>
+                  <a class="dropdown-item" href="updateData.jsp">Actualizar Datos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.jsp">Cerrar Sesión</a>
               </div>
