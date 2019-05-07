@@ -14,7 +14,7 @@
         <div id="contenedor1">
             
             <h1><img src="imagen/umg.png" width="50" height="50" alt=""/></h1>
-            <h1>Inisiar Sesión</h1>
+            <h1>Iniciar Sesión</h1>
             <form id="form1" action="LoginController" method="post">
                 <img src="imagen/login.png" width="30" height="30" alt=""/>
                 <input type="text" name="user" placeholder="Correo Electronico" value="<jsp:getProperty name="user" property="user"/>">
@@ -25,7 +25,7 @@
                 <input type="submit" value="Entrar">
                 <br><br>
                 <a href="register_form.jsp">Registrate</a>
-                <a href="index.jsp">¿Has olvidado tu contraseña?</a> 
+                <a href="Recover_password.jsp">¿Has olvidado tu contraseña?</a> 
                 
             </form>
         </div>

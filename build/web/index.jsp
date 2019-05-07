@@ -10,12 +10,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>InstaMessageMail</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
 
 </head>
@@ -26,7 +26,8 @@
 
     <!-- Sidebar -->
     <div class="bg-dark text-white border-right" id="sidebar-wrapper">
-         <%  
+         
+        <%  
             HttpSession sessionUser=request.getSession(false);  
             String us=(String)sessionUser.getAttribute("user");
             
@@ -35,13 +36,21 @@
             user_of_InstaMessage.GetUser();     
         %>
       
-      <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/> <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %></div>
+        <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/>
+            <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %><br>
+            <h6><%= user_of_InstaMessage.getUser()%></h6>
+        </div>
+       
+        <div align="center">
+            <button type="button" class="btn btn-primary btn-lg">Mensaje Nuevo</button>
+        </div> 
+        
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Entrada</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Bandeja de Salida</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Correos Eliminados</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Clasificacion</a>
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Borradores</a>
+        <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
+        <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
+        <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
+        <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
+        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -62,17 +71,17 @@
             </div>
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="index.jsp">Inicio<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+         <!--    <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
-            </li>
+            </li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Opciones
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Actualizar Datos</a>
+                <a class="dropdown-item" href="updateData.jsp">Actualizar Datos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.jsp">Cerrar Sesión</a>
               </div>
@@ -81,7 +90,7 @@
         </div>
       </nav>
       
-        <div class="bd-example">
+<!--        <div class="bd-example">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -116,7 +125,25 @@
   </div>
 </div>
         
-    </div>
+    </div>-->
+
+<div class="welcome" align="center" width="100%" height="100%">
+    
+    <h1 class="display-4">La nueva generación de correo electronico.</h1>
+            <hr color="white" class="my-4">
+            <h4>Conoce más acerca de nuestra plataforma: </h4>
+</div>
+<div class="info-container">
+    <br><br>
+    <p>InstaMessage es una plataforma de gestion de correo rápida y versátil,
+            donde podras tener toda tu información al alcance de un click. </p>
+    <br>
+    <p>En nuestra plataforma puedes acceder a todos tus correos desde nuestro menu principal,
+    donde puedes encontrar tu "Bandeja de Entrada", "Bandeja de Salida", tus "Correos Eliminados",
+    La "Clasificacion" y tus "Borradores". Ya nada se perderá entre tus correos!</p>
+    
+    <img src="imagen/umg.png" width="200" height="200" alt=""/>
+</div>
     <!-- /#page-content-wrapper -->
 
   </div>

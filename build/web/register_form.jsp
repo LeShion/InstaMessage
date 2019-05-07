@@ -20,10 +20,14 @@
 
                 <input type="text" name="first_name" placeholder="Nombre" value="<jsp:getProperty name="user" property="first_name"/>"><br>
                 <input type="text" name="last_name" placeholder="Apellido" value="<jsp:getProperty name="user" property="last_name"/>"><br>
-                <input type="text" name="user" placeholder="Nombre de Usuario" value="<jsp:getProperty name="user" property="user"/>"><br>
+                <input type="text" class="form-control" name="user" placeholder="Nombre de Usuario" value="<jsp:getProperty name="user" property="user"/>"><br>
                 <input type="text" readonly="readonly" value="@instam.com">
                 <input type="password" name="pwd" placeholder="Contraseña" value="<jsp:getProperty name="user" property="pwd"/>"><br>
-                <input type="text" name="pSecreta" placeholder="Pregunta Secreta" value="<jsp:getProperty name="user" property="psecreta"/>"><br>
+                <select name="pSecreta" class="form-control">
+                    <option value="" disabled selected>Pregunta Secreta</option>
+                    <option value="Nombre de mascota favorita">Nombre de mascota favorita</option>
+                    <option value="Mejor amigo de la infancia">Mejor amigo de la infancia</option>
+                </select>
                 <input type="text" name="rSecreta" placeholder="Respuesta Secreta" value="<jsp:getProperty name="user" property="rsecreta"/>"><br>
                 <input type="date" name="fecha_nac" placeholder="Fecha de Nacimiento" value="<jsp:getProperty name="user" property="fechaNac"/>"><br><br>
                 
