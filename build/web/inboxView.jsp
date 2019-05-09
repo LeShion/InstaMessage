@@ -13,11 +13,11 @@
   <title>InstaMessageMail</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="css/bootstrap.min.css" rel="stylesheet"/>
+  
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
-
+  <link href="css/all.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -35,10 +35,15 @@
             user_of_InstaMessage.GetUser();     
         %>
       
-      <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/>
+      <div align="center" class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/>
             <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %><br>
             <h6><%= user_of_InstaMessage.getUser()%></h6>
       </div>
+      
+        <div align="center">
+            <a href="newMesssage.jsp" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Mensaje Nuevo</a>
+        </div><br>
+        
       <div class="list-group list-group-flush">
         <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
@@ -91,6 +96,49 @@
             
 </div>
 <div class="info-container">
+    
+    <div align="center">
+      <div class="col-lg-8">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Ingresa correo">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div><br>
+    
+    <div class=col-md-14>
+    
+    <form id="form-list-client">
+
+    <table class="table table-bordered table-condensed table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Fecha</th>
+                <th>Remitente</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+                
+        </thead>
+        <tbody id="form-list-client-body">
+            <tr>
+                <td>Eduardo</td>
+                <td>eluz@counterpath.com</td>
+                <td>Active</td>
+                <td>
+                    <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
+                    <a href="index.jsp" title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
+                    <a href="" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
+                    <a href="" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    </div>
         
 </div>
     <!-- /#page-content-wrapper -->
@@ -98,9 +146,9 @@
   </div>
   <!-- /#wrapper -->
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript --> 
+  <script src="js/jquery-3.4.0.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
 
   <!-- Menu Toggle Script -->
   <script>

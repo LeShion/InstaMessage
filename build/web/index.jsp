@@ -13,10 +13,11 @@
   <title>InstaMessageMail</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="css/all.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -36,14 +37,14 @@
             user_of_InstaMessage.GetUser();     
         %>
       
-        <div class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/>
+        <div align="center" class="sidebar-heading"> <img src="imagen/User.png" width="40" height="40" alt=""/>
             <%= user_of_InstaMessage.getFirst_name()%> <%= user_of_InstaMessage.getLast_name() %><br>
             <h6><%= user_of_InstaMessage.getUser()%></h6>
         </div>
        
         <div align="center">
-            <button type="button" class="btn btn-primary btn-lg">Mensaje Nuevo</button>
-        </div> 
+            <a href="newMesssage.jsp" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Mensaje Nuevo</a>
+        </div><br>
         
       <div class="list-group list-group-flush">
         <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
@@ -150,8 +151,8 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.4.0.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
 
   <!-- Menu Toggle Script -->
   <script>
