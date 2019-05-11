@@ -1,66 +1,57 @@
 
 package dao;
 
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-
+import Interfaces.CRUD;
 import beans.Mensaje;
 import database.Db_Connection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MensajeDAO {
-	
-	public ArrayList<Mensaje> obtenerMensajes(String destino){
-		Connection cn = null;
-		ArrayList<Mensaje> mensajes = null;
-		Statement st;
-		ResultSet rs;
-		
-		
-		try{
-			cn = Db_Connection.Connection();
-			st = cn.createStatement();
-			String tsql = "Select * from mensajes where destinatario = '"+
-			destino+"'";
-			rs = st.executeQuery(tsql);
-			mensajes = new ArrayList<Mensaje>();
-			
-			while(rs.next()){
-				Mensaje m = new  Mensaje(rs.getInt("idmensaje"),rs.getString("remitente"),rs.getString("destinatario"),rs.getString("texto"),rs.getString("fecha"));
-				mensajes.add(m);
-				
-			}
-			cn.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	
-		return mensajes;
-		
-		
-	}
-	public void grabarMensaje(Mensaje m){
-		Connection cn;
-		Statement st;
-		
-		
-		try{
-			cn = Db_Connection.Connection();
-			st = cn.createStatement();
-			String tsql;
-			tsql = " insert into mensajes values(null,";
-			tsql+= "'"+m.getRemite()+"',";
-			tsql+= "'"+m.getDestino()+"',";
-			tsql+= "'"+m.getTexto()+"',";
-			tsql+= "'"+m.getFecha()+"')";
-			st.execute(tsql);
-			cn.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	}
 
-}	
+public class MensajeDAO implements CRUD{
+    Db_Connection con=new Db_Connection();
+    Connection conect;
+    PreparedStatement ps;
+    ResultSet rs;
+    Mensaje m=new Mensaje();
+    
+    @Override
+    public List listar() {
+        ArrayList<Mensaje>list=new ArrayList<>();
+        String sql = "SELECT Usuario.Alias, Correo.Destinatario, Correo.Asunto, Correo.Mensaje, Correo.Fecha FROM Usuario LEFT OUTER JOIN Correo ON Usuario.Alias=Correo.Remitente";
+        try{
+            conect=con.Connection();
+            ps=conect.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Mensaje men = new Mensaje();
+                men.setFecha(rs.getString("fecha"));
+                men.setAsunto(rs.getString("Asunto"));
+                men.setRemitente(rs.getString("Remitente"));
+                list.add(m);
+            }
+        }catch (Exception e){
+            
+        }
+        return list;
+    }
+
+    @Override
+    public Mensaje list(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean newM(Mensaje men) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delM(Mensaje men) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}
