@@ -29,13 +29,19 @@ public class RegisterController extends HttpServlet
                 user.setRsecreta(request.getParameter("rSecreta"));
                 user.setFechaNac(request.getParameter("fecha_nac"));
 
-                user.RegisterUser();
+                String accion = request.getParameter("accion");
+                if(accion.equals("insertar")){
+                    user.RegisterUser();
+                    RequestDispatcher rd = request.getRequestDispatcher("login_form.jsp");
+                    rd.forward(request,response);
+                    
+                }else if(accion.equals("actualizar")){
+                    user.EditUser();
+                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                    rd.forward(request,response);
+                }
+               
 
-                out.println("<br>");
-                out.println("<br>");
-                out.println("<center>Registrado!!!</center>");
-                RequestDispatcher rd = request.getRequestDispatcher("login_form.jsp");
-                rd.forward(request,response);
             } finally {out.close();}
         }
            

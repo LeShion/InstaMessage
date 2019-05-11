@@ -101,68 +101,55 @@
 
         <div class="card-body px-lg-5 pt-0">
 
-            <form class="text-center" style="color: #757575;">
+            <form id="form2" action="RegisterController" method="post" class="text-center" style="color: #757575;">
 
                 <div class="form-row">
                     <div class="col">
                         <!-- First name -->
                         <div class="md-form">
-                            <input type="text" id="materialRegisterFormFirstName" class="form-control" value="<%= user_of_InstaMessage.getFirst_name()%>">
+                            <input type="text" name="first_name" class="form-control" value="<%= user_of_InstaMessage.getFirst_name()%>">
                             <label>Primer Nombre</label>
                         </div>
                     </div>
                     <div class="col">
                         <!-- Last name -->
                         <div class="md-form">
-                            <input type="email" id="materialRegisterFormLastName" class="form-control" value="<%= user_of_InstaMessage.getLast_name()%>">
+                            <input type="text" name="last_name" class="form-control" value="<%= user_of_InstaMessage.getLast_name()%>">
                             <label>Primer Apelido</label>
                         </div>
                     </div>
                 </div><br>
 
-
                 <div class="input-group mb-form">
-                    <input type="text" class="form-control" value="<%= user_of_InstaMessage.getUser()%>" readonly="readonly" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" name="user" class="form-control" value="<%= user_of_InstaMessage.getUser()%>" readonly="readonly">
                 </div>
-                <label>Usuario</label>
-                
+                <label>Usuario</label>   
 
                 <div class="md-form">
                     <br>
-                    <input type="password" value="<%= user_of_InstaMessage.getPwd()%>" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                    <input type="password" name="pwd" value="<%= user_of_InstaMessage.getPwd()%>" class="form-control">
                     <label>Password</label>
                 </div><br>
-                
-                <div class="md-form">
-                    <br>
-                    <input type="text" value="<%= user_of_InstaMessage.getPsecreta()%>" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
-                    <label>pregunta Secreta</label>
-                </div><br>
-
-
-                <select class="browser-default custom-select mb-form">
-                    <option value="" disabled>Pregunta Secreta</option>
-                    <option value="1" selected>Feedback</option>
-                    <option value="2">Report a bug</option>
-                    <option value="3">Feature request</option>
-                    <option value="4">Feature request</option>
+               
+                <select name="pSecreta" class="form-control">
+                    <option value="<%= user_of_InstaMessage.getPsecreta()%>" selected><%=user_of_InstaMessage.getPsecreta()%></option>
+                    <option value="Mejor amigo de la infancia">Mejor amigo de la infancia</option>
                 </select>
                 <label>Pregunta Secreta</label>
                 
- 
                 <div class="md-form">
                     <br>
-                    <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                    <input type="password" name="rSecreta" class="form-control" value="<%= user_of_InstaMessage.getRsecreta()%>">
                     <label>Respuesta Secreta</label>
-                </div><br>
-
-
+                </div>
+                
                 <div class="md-form">
-                    <input type="date" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                    <br>
+                    <input type="date" name="fecha_nac" value="<%= user_of_InstaMessage.getFechaNac()%>" class="form-control">
                     <label>Fecha de Nacimiento</label>
                 </div>
 
-                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Actualizar</button>
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="accion" value="actualizar">Actualizar</button>
 
                 <hr>
 

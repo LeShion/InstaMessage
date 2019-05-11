@@ -117,6 +117,32 @@ public class User
     }
     
     //----------------------------------//
+      
+    public void EditUser()
+    {
+        
+        try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
+           
+            PreparedStatement ps1 = myconnection.prepareStatement("update Usuario set Nombre = ?, Apellido = ?, Contrasenia = ?, Pregunta = ?, Rsecreta = ?, Fecha_nac = ? where Alias = ? ");
+                
+            ps1.setString(1, first_name);
+            ps1.setString(2, last_name);
+            ps1.setString(3, pwd);
+            ps1.setString(4, pSecreta);
+            ps1.setString(5, rSecreta);
+            ps1.setString(6, fecha_nac);
+            ps1.setString(7, user);
+            ps1.executeUpdate();
+            
+        }catch(SQLException e){
+            
+        } 
+    }
+    
+    //----------------------------------//
     
     public static boolean LoginUser(String user,String pwd) 
     {
@@ -130,6 +156,30 @@ public class User
 
                 ps1.setString(1, user);
                 ps1.setString(2, pwd);
+                ResultSet rs1 =ps1.executeQuery();
+                check = rs1.next();
+
+                myconnection.close();        
+            }catch(Exception e){e.printStackTrace();}
+            
+            return check;    
+    }
+    
+    //----------------------------------//
+    
+    public static boolean recoveryPassword(String user,String pSecreta, String rSecreta) 
+    {
+            boolean check =false;
+            try 
+            {      
+                Db_Connection dbconn=new Db_Connection();
+                Connection myconnection= dbconn.Connection();
+                
+                PreparedStatement ps1 =myconnection.prepareStatement("SELECT * FROM Usuario WHERE Alias=? and Pregunta=? and Rsecreta=?");
+
+                ps1.setString(1, user+"@instam.com");
+                ps1.setString(2, pSecreta);
+                ps1.setString(3, rSecreta);
                 ResultSet rs1 =ps1.executeQuery();
                 check = rs1.next();
 
@@ -156,8 +206,11 @@ public class User
                 {
                     first_name= rs.getString("Nombre");
                     last_name = rs.getString("Apellido");
-                    user= rs.getString("Alias");
+                    user = rs.getString("Alias");
                     pwd = rs.getString("Contrasenia");
+                    pSecreta = rs.getString("Pregunta");
+                    rSecreta = rs.getString("Rsecreta");
+                    fecha_nac = rs.getString("Fecha_nac");
                 }
                 
                 myStatement.close();

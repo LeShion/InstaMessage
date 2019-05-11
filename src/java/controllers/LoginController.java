@@ -23,8 +23,13 @@ public class LoginController extends HttpServlet
 
                 user.setUser(request.getParameter("user"));
                 user.setPwd(request.getParameter("pwd"));
+                user.setPsecreta(request.getParameter("pSecreta"));
+                user.setRsecreta(request.getParameter("rSecreta"));
                 
-                if(User.LoginUser(request.getParameter("user"),request.getParameter("pwd")))
+                String accion = request.getParameter("accion");
+                
+                if(accion.equals("Entrar")){
+                    if(User.LoginUser(request.getParameter("user"),request.getParameter("pwd")))
                 {
                     User us = new User();
                     us.setUser(String.valueOf(request.getParameter("user")));
@@ -53,7 +58,24 @@ public class LoginController extends HttpServlet
                     out.println("</script>");
                     RequestDispatcher rd = request.getRequestDispatcher("login_form.jsp");
 	       	    rd.include(request, response);
-                }    
+                }  
+                    
+                }else if(accion.equals("recuperar")){
+                    if(User.recoveryPassword(request.getParameter("user"),request.getParameter("pSecreta"),request.getParameter("rSecreta")))
+                {             
+
+                    
+                    request.setAttribute("result", "CONTRASEÑA");
+                    RequestDispatcher rd1 = request.getRequestDispatcher("Recover_password.jsp");
+                    rd1.forward(request,response);              
+
+                }else{
+                    out.println("ERROR");
+                }
+                    
+                }
+                
+                  
             } finally {out.close();}
         }
         
