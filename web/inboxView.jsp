@@ -1,3 +1,7 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="beans.Mensaje"%>
+<%@page import="dao.MensajeDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="beans.User"%>
 <!DOCTYPE html>
@@ -116,17 +120,25 @@
         <thead class="thead-dark">
             <tr>
                 <th>Fecha</th>
+                <th>Asunto</th>
                 <th>Remitente</th>
-                <th>Estado</th>
                 <th>Acción</th>
             </tr>
-                
         </thead>
+        <%
+            MensajeDAO dao = new MensajeDAO();
+            List<Mensaje>list=dao.listar();
+            Iterator<Mensaje>iter=list.iterator();
+            Mensaje mens=null;
+            while(iter.hasNext()){
+                mens=iter.next();
+            
+        %>
         <tbody id="form-list-client-body">
             <tr>
-                <td>Eduardo</td>
-                <td>eluz@counterpath.com</td>
-                <td>Active</td>
+                <td><%=mens.getFecha()%></td>
+                <td><%=mens.getAsunto()%></td>
+                <td><%=mens.getRemitente()%></td>
                 <td>
                     <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
                     <a href="index.jsp" title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
@@ -134,6 +146,7 @@
                     <a href="" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
                 </td>
             </tr>
+            <%}%>
         </tbody>
     </table>
     </form>
