@@ -1,53 +1,148 @@
 
 package beans;
 
+import database.Db_Connection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Mensaje {
-	private Integer id;
-	private String remite;
-	private String destino;
-	private String texto;
+	private int id;
+	private String Remitente;
+	private String Destinatario;
+	private String Asunto;
+        private String Mensaje;
+        private int Status;
 	private String fecha;
 	
 	public Mensaje(){
-		
+           
 	}
-    public Mensaje(Integer id,String remite,String destino,String texto,String fecha){
+    public Mensaje(int id,String remitente,String destino,String asunto, String mensaje,int estado, String fecha){
     	this.id = id;
-    	this.remite = remite;
-    	this.destino = destino;
-    	this.texto = texto;
+    	this.Remitente = remitente;
+    	this.Destinatario = destino;
+        this.Asunto = asunto;
+    	this.Mensaje = mensaje;
+        this.Status = estado;
     	this.fecha = fecha;
     	
     }
-    public Integer getId() {
+
+    public Mensaje(int aInt, String string, String string0, String string1, String string2) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+    
+    //----------------Getters------------------//
+    
+    public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	
+	public String getRemitente() {
+		return Remitente;
 	}
-	public String getRemite() {
-		return remite;
-	}
-	public void setRemite(String remite) {
-		this.remite = remite;
-	}
+	
 	public String getDestino() {
-		return destino;
+		return Destinatario;
 	}
-	public void setDestino(String destino) {
-		this.destino = destino;
+	
+        
+        public String getAsunto() {
+                return Asunto;
+        }
+        
+	public String getMensaje() {
+		return Mensaje;
 	}
-	public String getTexto() {
-		return texto;
-	}
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
+	
+        public int getStatus(){
+                return Status;
+        }
+        
 	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	
+        //---------------Setters-------------------//
+        
+        public void setId(int id) {
+		this.id = id;
+	}
+        
+        public void setRemitente(String remitente) {
+		this.Remitente = remitente;
+	}
+        
+        public void setDestino(String destino) {
+		this.Destinatario = destino;
+	}
+        
+        public void setAsunto(String asunto){
+                this.Asunto = asunto;
+        }
+        
+        public void setMensaje(String mensaje) {
+		this.Mensaje = mensaje;
+	}
+        public void setStatus(int estado){
+                this.Status = estado;
+        }
+        
+        public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+        
+        //----------------------------------//
+    /*    
+        public void NuevoMensaje(){
+            try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
 
+            String sqlString="INSERT INTO Correo (Remitente,Destinatario,Asunto,Mensaje,Status,fecha) VALUES ('"+Remitente+"','"+Destinatario+"','"+Asunto+"','"+Mensaje+"','"+Status+"','"+fecha+"')";
+            
+            Statement myStatement = myconnection.createStatement();
+            
+            try
+            {    
+                myStatement.executeUpdate(sqlString);
+                myStatement.close();
+                myconnection.close();
+            } catch (SQLException ex) {Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);}
+        } catch (SQLException ex) {Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);}  
+    
+        }
+        
+        //----------------------------------//
+        
+        public void GetMessage(){
+             try 
+            {      
+                Db_Connection dbconn=new Db_Connection();
+                Connection myconnection= dbconn.Connection();
+                
+                String sqlString = "SELECT Usuario.Alias, Correo.Destinatario, Correo.Asunto, Correo.Mensaje, Correo.Fecha"
+                        + "FROM Usuario LEFT OUTER JOIN Correo ON Usuario.Alias=Correo.Remitente WHERE Alias = '"+Remitente+"'";
+                Statement myStatement = myconnection.createStatement();
+                ResultSet rs=myStatement.executeQuery(sqlString);
+
+                while(rs.next())
+                {
+                    fecha= rs.getString("fecha");
+                    Asunto = rs.getString("Asunto");
+                    Remitente= rs.getString("Remitente");
+                    Mensaje = rs.getString("Mensaje");
+                }
+                
+                myStatement.close();
+                myconnection.close();
+                
+            } catch (SQLException ex) {Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);} 
+       
+        }*/
 }
