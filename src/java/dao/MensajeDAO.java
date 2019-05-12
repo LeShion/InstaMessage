@@ -32,6 +32,7 @@ public class MensajeDAO implements CRUD{
                 men.setAsunto(rs.getString("Asunto"));
                 men.setRemitente(rs.getString("Remitente"));
                 list.add(m);
+                
             }
         }catch (Exception e){
             
@@ -46,7 +47,15 @@ public class MensajeDAO implements CRUD{
 
     @Override
     public boolean newM(Mensaje men) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String sql="INSERT INTO MENSAJE(Remitente, Destinatario, Asunto, Mensaje)values('"+m.getRemitente()+"','"+m.getDestino()+"','"+m.getAsunto()+"','"+m.getMensaje()+"')";
+       try{
+           conect=con.Connection();
+           ps=conect.prepareStatement(sql);
+           ps.executeUpdate();
+       }catch (Exception e){
+           
+       }
+       return false;
     }
 
     @Override
