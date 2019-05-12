@@ -95,7 +95,7 @@
         
         <div class="container">   
             <div class="col-md-14">        
-                <form class="form-horizontal" action="sentEmails" method="post">
+                <form class="form-horizontal" action="MensajeControlador" >
                                            
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-address-card bigicon"></i></span>
