@@ -63,27 +63,7 @@ public class MensajeControlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String acceso="";
-        String action=request.getParameter("accion");
-        if(action.equalsIgnoreCase("inboxView")){
-            acceso=inboxView;
-        }else if(action.equalsIgnoreCase("news")){
-            acceso=newMesssage;
-        }
-        else if(action.equalsIgnoreCase("EnviarNuevo")){
-            String Remit=request.getParameter("remitente");
-            String Dest=request.getParameter("destinatario")+"@instam.com";
-            String Asun=request.getParameter("asunto");
-            String Mens=request.getParameter("mensaje");
-            m.setRemitente(Remit);
-            m.setDestino(Dest);
-            m.setAsunto(Asun);
-            m.setMensaje(Mens);
-            dao.newM(m);
-            acceso=inboxView;
-        }
-        RequestDispatcher vista=request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
+        processRequest(request, response);
     }
 
     /**

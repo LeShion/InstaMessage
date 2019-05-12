@@ -1,5 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="beans.Mensaje"%>
+<%@page import="dao.MensajeDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="beans.User"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,12 +52,11 @@
         </div><br>
         
       <div class="list-group list-group-flush">
-        <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
-        <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
+        <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
+        <a href="MensajeController?accion=BandejaSalida" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
         <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
         <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
-        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a>  
-      </div>
+        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a></div>
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -97,6 +102,37 @@
             
 </div>
 <div class="info-container">
+    <div class=col-md-14>
+    
+    <form id="form-list-client">
+
+    <table class="table table-bordered table-condensed table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Fecha</th>
+                <th>Asunto</th>
+                <th>Remitente</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+
+        <tbody id="form-list-client-body">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
+                    <a href="index.jsp" title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
+                    <a href="" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
+                    <a href="" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    </div>
         
 </div>
     <!-- /#page-content-wrapper -->

@@ -12,6 +12,10 @@
         <servlet-name>sentEmails</servlet-name>
         <servlet-class>Mantenimiento.sentEmails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MensajeController</servlet-name>
+        <servlet-class>controllers.MensajeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>sentEmails</servlet-name>
         <url-pattern>/sentEmails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MensajeController</servlet-name>
+        <url-pattern>/MensajeController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

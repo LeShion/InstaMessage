@@ -1,6 +1,7 @@
 
 package beans;
 
+import java.sql.*;
 import database.Db_Connection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,30 +12,38 @@ import java.util.logging.Logger;
 
 public class Mensaje {
 	private int id;
+        private String fecha;
 	private String Remitente;
 	private String Destinatario;
 	private String Asunto;
         private String Mensaje;
         private int Status;
-	private String fecha;
 	
-	public Mensaje(){
-           
-	}
-    public Mensaje(int id,String remitente,String destino,String asunto, String mensaje,int estado, String fecha){
-    	this.id = id;
-    	this.Remitente = remitente;
-    	this.Destinatario = destino;
-        this.Asunto = asunto;
-    	this.Mensaje = mensaje;
-        this.Status = estado;
-    	this.fecha = fecha;
-    	
+
+    public Mensaje(){
+        fecha = "";
+    	Remitente = "";
+    	Destinatario = "";
+        Asunto = "";
+    	Mensaje = "";
+        Status = 0;
     }
 
-    public Mensaje(int aInt, String string, String string0, String string1, String string2) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public Mensaje(int id, String fecha, String Remitente, String Destinatario, String Asunto, String Mensaje, int Status) {
+        this.id = id;
+        this.fecha = fecha;
+        this.Remitente = Remitente;
+        this.Destinatario = Destinatario;
+        this.Asunto = Asunto;
+        this.Mensaje = Mensaje;
+        this.Status = Status;
     }
+
+    public Mensaje(int aInt, String string, String string0, String string1, String string2, double aDouble) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
     //----------------Getters------------------//
     
@@ -97,14 +106,14 @@ public class Mensaje {
 	}
         
         //----------------------------------//
-    /*    
+        
         public void NuevoMensaje(){
             try
         {    
             Db_Connection dbconn=new Db_Connection();
             Connection myconnection= dbconn.Connection();
 
-            String sqlString="INSERT INTO Correo (Remitente,Destinatario,Asunto,Mensaje,Status,fecha) VALUES ('"+Remitente+"','"+Destinatario+"','"+Asunto+"','"+Mensaje+"','"+Status+"','"+fecha+"')";
+            String sqlString="INSERT INTO Correo (fecha,Remitente,Destinatario,Asunto,Mensaje,Status) VALUES ('"+fecha+"','"+Remitente+"','"+Destinatario+"@instam.com"+"','"+Asunto+"','"+Mensaje+"','"+Status+"')";
             
             Statement myStatement = myconnection.createStatement();
             
@@ -113,8 +122,8 @@ public class Mensaje {
                 myStatement.executeUpdate(sqlString);
                 myStatement.close();
                 myconnection.close();
-            } catch (SQLException ex) {Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);}
-        } catch (SQLException ex) {Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);}  
+            } catch (SQLException ex) {}
+        } catch (SQLException ex) {}  
     
         }
         
@@ -126,8 +135,7 @@ public class Mensaje {
                 Db_Connection dbconn=new Db_Connection();
                 Connection myconnection= dbconn.Connection();
                 
-                String sqlString = "SELECT Usuario.Alias, Correo.Destinatario, Correo.Asunto, Correo.Mensaje, Correo.Fecha"
-                        + "FROM Usuario LEFT OUTER JOIN Correo ON Usuario.Alias=Correo.Remitente WHERE Alias = '"+Remitente+"'";
+                String sqlString = "SELECT * from correo";
                 Statement myStatement = myconnection.createStatement();
                 ResultSet rs=myStatement.executeQuery(sqlString);
 
@@ -142,7 +150,7 @@ public class Mensaje {
                 myStatement.close();
                 myconnection.close();
                 
-            } catch (SQLException ex) {Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);} 
+            } catch (Exception ex){} 
        
-        }*/
+        }
 }
