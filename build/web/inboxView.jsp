@@ -20,7 +20,15 @@
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet"/>
-  
+  <script src="js/jquery-3.4.0.min.js" type="text/javascript"></script>
+  <script src="js/popper.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script>
+      $(document).ready(function()
+      {
+         $("#myModal").modal("show");
+      });
+  </script>
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/all.css" rel="stylesheet" type="text/css"/>
@@ -117,7 +125,7 @@
     
     <div class=col-md-14>
     
-    <form id="form-list-client">
+    <form id="form-list-client" action="MensajeController" method="post">
 
     <table class="table table-bordered table-condensed table-hover">
         <thead class="thead-dark">
@@ -140,11 +148,60 @@
                     
                 
         %>
-        <script>
-      
-                swal("De: "+'<%= e.getRemitente()%>', '<%= e.getMensaje()%>', "success");
-          
-        </script>
+        <div class="modal fade right" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" data-backdrop="false">
+            <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+              <div class="modal-content">
+             
+                <!--Body-->
+                <div class="modal-body">
+                  <div class="text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">×</span>
+                    </button> 
+                    <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i> 
+                    <h2><strong> De: </strong><%= e.getRemitente() %></h2> 
+                    <input style="display: none" id="email" name="destinatario" type="text" value="<%= e.getRemitente()%>" readonly="readonly" class="form-control">
+                    <input style="display: none" id="email" name="remitente" type="text" value="<%= user_of_InstaMessage.getUser()%>" readonly="readonly" class="form-control">
+                           
+                    <p>
+                      <strong>Fecha de Recibido: </strong><%= e.getFecha()%>
+                    </p>
+                    <p>
+                      <strong>Asunto: </strong>
+                      <input id="email" name="asunto" type="text" value="<%= e.getAsunto() %>" readonly="readonly" class="form-control"
+                    </p>
+                    
+                    
+                    <div class="md-form">
+                    <strong>Mensaje: </strong>
+                    <textarea type="text" id="form79textarea" class="md-textarea form-control" readonly="readonly" rows="2"><%= e.getMensaje() %></textarea>
+                    </div>
+                    
+                  </div>
+
+                  <hr>
+
+                  <p class="text-center">
+                    <strong>¿Deseas responder a <%= e.getRemitente() %>?</strong>
+                  </p>
+                  <!--Basic textarea-->
+                  <div class="md-form">
+                    <textarea type="text" id="form79textarea" name="mensaje" class="md-textarea form-control" placeholder="Ingresa tu mensaje que no sea mayor a 800 palabras." rows="6"></textarea>
+                    <label for="form79textarea">Gracias por responder!</label>
+                  </div>
+
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-lg" name="accion" value="respuesta">Responder</button>
+                    <button id="btn1" type="reset" class="btn btn-danger btn-lg">Borrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
         <%
         }clave="";}
         %>

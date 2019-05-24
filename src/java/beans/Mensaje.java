@@ -154,6 +154,27 @@ public class Mensaje {
         } catch (SQLException ex) {}  
     
         }
+        //----------------------------------//
+        
+        public void ResponderMensaje(){
+            try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
+
+            String sqlString="INSERT INTO Correo (fecha,Remitente,Destinatario,Asunto,Mensaje,Status) VALUES ('"+fecha+"','"+Remitente+"','"+Destinatario+"','"+Asunto+"','"+Mensaje+"','"+Status+"') INSERT INTO Enviados (status_enviado) VALUES ('"+ Status+"') INSERT INTO Recibidos (Id_status_recibidos) VALUES ('"+ 2+"')";
+            
+            Statement myStatement = myconnection.createStatement();
+            
+            try
+            {    
+                myStatement.executeUpdate(sqlString);
+                myStatement.close();
+                myconnection.close();
+            } catch (SQLException ex) {}
+        } catch (SQLException ex) {}  
+    
+        }
         
         //----------------------------------//
         public void EditStatus()
@@ -200,6 +221,25 @@ public class Mensaje {
                 myStatement.close();
                 myconnection.close();
             } catch (SQLException ex) {}
+        } catch (SQLException ex) {}  
+    
+    }
+        //----------------------------------//
+        public void EliminarMensajeP()
+    {
+        
+        try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
+
+            
+            PreparedStatement ps1 = myconnection.prepareStatement("delete from Eliminados where Id_correo_eliminado =? ");
+                
+            ps1.setInt(1, id);             
+            ps1.executeUpdate();  
+            
+            
         } catch (SQLException ex) {}  
     
     }

@@ -58,23 +58,24 @@ public class MensajeController extends HttpServlet {
             msj.setAsunto(request.getParameter("asunto"));
             msj.setMensaje(request.getParameter("mensaje"));
             
+            HttpSession sessionUser=request.getSession(false);  
+            String us=(String)sessionUser.getAttribute("user");
+            User user_of_InstaMessage = new User();
+            user_of_InstaMessage.setUser(us);
+            user_of_InstaMessage.GetUser();
+            String usuario = user_of_InstaMessage.getUser();
+            
             
            String accion = request.getParameter("accion");
            if(accion.equals("EnviarNuevo")){
-               msj.setStatus(1);
+                msj.setStatus(1);
                 msj.NuevoMensaje();
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request,response);
                
            }else if(accion.equals("BandejaEntrada")){
                     try{
-                    HttpSession sessionUser=request.getSession(false);  
-                    String us=(String)sessionUser.getAttribute("user");
-
-                    User user_of_InstaMessage = new User();
-                    user_of_InstaMessage.setUser(us);
-                    user_of_InstaMessage.GetUser();
-                    String usuario = user_of_InstaMessage.getUser();
+                    
                                   
                     Connection cnx = Db_Connection.Connection();
                     PreparedStatement sta = cnx.prepareStatement("select Id_correo,fecha,Remitente,Destinatario,Asunto,Mensaje,Id_status_recibidos,Nom_stat from Correo INNER JOIN Recibidos on Correo.Id_correo = Recibidos.Id_correo_recibidos INNER JOIN Estatus on Recibidos.Id_status_recibidos = Estatus.id_status where Destinatario='"+usuario+"' order by fecha DESC");
@@ -101,7 +102,11 @@ public class MensajeController extends HttpServlet {
               
                }else if(accion.equals("Mostrar_Mensajes")){
                     try{
-                                 
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    msj.setId(id);
+                    msj.setStatus(3);
+                    msj.EditStatus();
+
                     String clave = request.getParameter("id");
                     
                     request.setAttribute("lista2", clave);
@@ -111,13 +116,6 @@ public class MensajeController extends HttpServlet {
                                  
                }else if(accion.equals("BandejaSalida")){
                    try{
-                    HttpSession sessionUser=request.getSession(false);  
-                    String us=(String)sessionUser.getAttribute("user");
-
-                    User user_of_InstaMessage = new User();
-                    user_of_InstaMessage.setUser(us);
-                    user_of_InstaMessage.GetUser();
-                    String usuario = user_of_InstaMessage.getUser();
                                   
                     Connection cnx = Db_Connection.Connection();
                     PreparedStatement sta = cnx.prepareStatement("select Correo.*, Estatus.Nom_stat from Correo join Estatus on Correo.Status = Estatus.Id_status where Remitente='"+usuario+"' order by fecha DESC");
@@ -145,13 +143,6 @@ public class MensajeController extends HttpServlet {
                     
                }else if(accion.equals("Eliminados")){
                     try{
-                    HttpSession sessionUser=request.getSession(false);  
-                    String us=(String)sessionUser.getAttribute("user");
-
-                    User user_of_InstaMessage = new User();
-                    user_of_InstaMessage.setUser(us);
-                    user_of_InstaMessage.GetUser();
-                    String usuario = user_of_InstaMessage.getUser();
                                   
                     Connection cnx = Db_Connection.Connection();
                     PreparedStatement sta = cnx.prepareStatement("select Id_correo,fecha,Remitente,Destinatario,Asunto,Mensaje,status_eliminado,Nom_stat from Correo INNER JOIN Eliminados on Correo.Id_correo = Eliminados.Id_correo_eliminado INNER JOIN Estatus on Eliminados.status_eliminado = Estatus.id_status where Destinatario='"+usuario+"' order by fecha DESC");
@@ -176,8 +167,6 @@ public class MensajeController extends HttpServlet {
                     
                     request.getRequestDispatcher("removedMailsView.jsp").forward(request, response);
                }catch(Exception e){}
-               
-               
               
                }else if(accion.equals("Eliminar")){
                     int id = Integer.parseInt(request.getParameter("id"));
@@ -200,8 +189,21 @@ public class MensajeController extends HttpServlet {
                     msj.EditStatus();
                     RequestDispatcher rd = request.getRequestDispatcher("MensajeController?accion=BandejaEntrada");
                     rd.forward(request,response);
+               }else if(accion.equals("EliminacionP")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    msj.setId(id);
+                    msj.EliminarMensajeP();
+                    RequestDispatcher rd = request.getRequestDispatcher("MensajeController?accion=Eliminados");
+                    rd.forward(request,response);
+               }else if(accion.equals("respuesta")){
+                    msj.setRemitente(usuario);
+                    msj.setAsunto(request.getParameter("asunto"));
+                    msj.setStatus(1);
+                    msj.ResponderMensaje();
+                    RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                    rd.forward(request,response);
+                    
                }
-            
             
         }finally {out.close();}
     }
