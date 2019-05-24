@@ -1,11 +1,14 @@
 package beans;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.*;
 import database.Db_Connection;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class User 
 {
@@ -21,7 +24,12 @@ public class User
         rSecreta="";
         fecha_nac="";
     }        
+
+    private User(String string, String string0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
  
+    
     //----------------Getters------------------//
     
     public String getFirst_name() 
@@ -221,5 +229,42 @@ public class User
     }
     
     //----------------------------------//
+    public static boolean checkContact(String user) 
+    {
+            boolean check =false;
+            try 
+            {      
+                Db_Connection dbconn=new Db_Connection();
+                Connection myconnection= dbconn.Connection();
+                
+                PreparedStatement ps1 =myconnection.prepareStatement("SELECT * FROM Usuario WHERE Alias=?");
 
+                ps1.setString(1, user);
+                ResultSet rs1 =ps1.executeQuery();
+                check = rs1.next();
+
+                myconnection.close();        
+            }catch(Exception e){e.printStackTrace();}
+            
+            return check;    
+    }
+    
+     public void newContact(){
+            try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
+               
+            String sqlString="INSERT INTO Contactos (Alias_contacto) VALUES ('"+"'"+user+"@instam.com"+"')";
+            
+            Statement myStatement = myconnection.createStatement();
+            myStatement.executeQuery(sqlString);
+            try
+            {    
+                myStatement.close();
+                myconnection.close();
+            } catch (SQLException ex) {}
+        } catch (SQLException ex) {}  
+    
+        }
 }
