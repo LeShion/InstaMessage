@@ -16,6 +16,10 @@
         <servlet-name>MensajeController</servlet-name>
         <servlet-class>controllers.MensajeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactoController</servlet-name>
+        <servlet-class>controllers.ContactoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>MensajeController</servlet-name>
         <url-pattern>/MensajeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactoController</servlet-name>
+        <url-pattern>/ContactoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

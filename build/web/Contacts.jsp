@@ -14,7 +14,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet"/>
-
+  
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/all.css" rel="stylesheet" type="text/css"/>
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-
+  <jsp:useBean id="user" scope="request" class="beans.User"></jsp:useBean>
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
@@ -96,6 +96,54 @@
             
 </div>
 <div class="info-container">
+    
+       <div align="center">
+           
+      <div class="col-lg-8">
+          <form id="form3" action="ContactoController" method="post" class="text-center" style="color: #757575;">
+              
+              <div class="form-row">
+                    <div class="col">
+                      
+                        <div class="md-form">
+                            <input style="" type="text" name="user" class="form-control" placeholder="Usuario">
+                        </div>
+                        
+                        <div class="md-form">
+                             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="accion" value="agregar">Agregar Contacto</button>
+                        </div>
+                    </div>
+                </div><br>
+              
+          </form>
+        
+      </div>
+           
+    </div><br> 
+    
+    <div class=col-md-14>
+    
+    <form id="form-list-client">
+
+    <table class="table table-bordered table-condensed table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Contacto</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="form-list-client-body">
+            <tr>
+                <td></td>
+                <td>
+                    <a href="" title="Ver Contacto" class="btn btn-default btn-sm "> <i class="fa far fa-eye text-primary"></i> </a>                    
+                    <a href="" title="Eliminar Contacto" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
+            </tr>
+            
+        </tbody>
+    </table>
+    </form>
+    </div>
         
 </div>
     <!-- /#page-content-wrapper -->
