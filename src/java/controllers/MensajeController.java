@@ -93,18 +93,22 @@ public class MensajeController extends HttpServlet {
                                     rs.getString(8));
                         lista.add(e);
                     }
-               
-                    String clave = request.getParameter("id");
-                    
-                    request.setAttribute("lista2", clave);
                     
                     request.setAttribute("lista", lista);
                     
                     request.getRequestDispatcher("inboxView.jsp").forward(request, response);
-               }catch(Exception e){}
-               
-               
+               }catch(Exception e){}             
               
+               }else if(accion.equals("Mostrar_Mensajes")){
+                    try{
+                                 
+                    String clave = request.getParameter("id");
+                    
+                    request.setAttribute("lista2", clave);
+                                        
+                    request.getRequestDispatcher("MensajeController?accion=BandejaEntrada").forward(request, response);
+               }catch(Exception e){}
+                                 
                }else if(accion.equals("BandejaSalida")){
                    try{
                     HttpSession sessionUser=request.getSession(false);  

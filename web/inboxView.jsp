@@ -146,7 +146,7 @@
           
         </script>
         <%
-        }}
+        }clave="";}
         %>
         <tbody id="form-list-client-body">
             <tr>
@@ -155,7 +155,7 @@
                 <td><%= e.getRemitente() %></td>
                 <td><%= e.getNameStatus() %></td>
                 <td>
-                    <a href="MensajeController?accion=BandejaEntrada&id=<%= e.getId() %>" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
+                    <a href="MensajeController?accion=Mostrar_Mensajes&id=<%= e.getId() %>" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
                     <a href="MensajeController?accion=Eliminar&id=<%= e.getId() %>" " title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
                     <a href="MensajeController?accion=Importante&id=<%= e.getId() %>" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
                     <a href="MensajeController?accion=Urgente&id=<%= e.getId() %>" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
