@@ -1,11 +1,9 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.List"%>
-<%@page import="beans.Mensaje"%>
-<%@page import="dao.MensajeDAO"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="beans.User"%>
-<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +18,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet"/>
-
+  <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/all.css" rel="stylesheet" type="text/css"/>
@@ -47,10 +45,6 @@
             <h6><%= user_of_InstaMessage.getUser()%></h6>
       </div>
       
-        <div align="center">
-            <a href="newMesssage.jsp" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Mensaje Nuevo</a>
-        </div><br>
-        
       <div class="list-group list-group-flush">
         <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="MensajeController?accion=BandejaSalida" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
@@ -86,7 +80,7 @@
                 Opciones
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="updateData.jsp">Actualizar Datos</a>
+                  <a class="dropdown-item" href="updateData.jsp">Actualizar Datos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.jsp">Cerrar Sesión</a>
               </div>
@@ -97,69 +91,102 @@
 
 <div class="welcome" align="center" width="100%" height="100%">
     
-    <h1 class="display-4">Bandeja de Salida</h1>
+    <h1 class="display-4">Reenvio de Mensaje</h1>
             <hr color="white" class="my-4">
-            
-</div>
-<div class="info-container">
-    <div class=col-md-14>
-    
-    <form id="form-list-client">
-
-    <table class="table table-bordered table-condensed table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th>Fecha de Envio</th>
-                <th>Asunto</th>
-                <th>Destinatario</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <%
-            ArrayList<Mensaje> lista =(ArrayList<Mensaje>) request.getAttribute("lista");
-            for(int i=0; i<lista.size(); i++){
-                Mensaje e = lista.get(i);
-                
-               
-
-        %>
-
-        <tbody id="form-list-client-body">
-            <tr>
-                <td><%= e.getFecha() %></td>
-                <td><%= e.getAsunto() %></td>
-                <td><%= e.getDestino() %></td>
-                <td>
-                    <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
-                    <a href="resendEmail.jsp?id=<%= e.getId()%>" title="Reenviar Correo" class="btn btn-default btn-sm "> <i class="fa fa-check-circle text-success"></i> </a>
-                    
-                </td>
-            </tr>
             <%
-            }
-            %>
-        </tbody>
-    </table>
-    </form>
+            String id = request.getParameter("id");
 
-    </div>
+            Connection cnx=null;
+            Statement sta=null;
+            ResultSet rs=null;
+
+            try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String URL="jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=bdinstamessage";
+            String user="admin";
+            String password="root";
+
+            cnx = DriverManager.getConnection(URL, user, password);
+            sta=cnx.createStatement();
+            rs=sta.executeQuery("select * from Correo where Id_correo='"+id+"'");
+
+            while(rs.next()){
+
+            %>
+            
+</div>    
         
-</div>
+        <div class="container">   
+            <div class="col-md-14">        
+                <form class="form-horizontal" action="MensajeController" method="post">
+                                           
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-address-card bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="fname" name="remitente" type="text" value="<%= user_of_InstaMessage.getUser()%>" readonly="readonly" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="input-group mb-form col-md-8">
+                              <input type="text" class="form-control" name="destinatario" placeholder="Destinatario" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@instam.com</span>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-ad bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="email" name="asunto" type="text" value="<%= rs.getString(5) %>" readonly="readonly" class="form-control">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="message" name="mensaje" readonly="readolny" rows="7"><%= rs.getString(6) %></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg" name="accion" value="EnviarNuevo">Reenviar</button>
+                                <button id="btn1" type="reset" class="btn btn-danger btn-lg">Borrar</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
     <!-- /#page-content-wrapper -->
 
-  </div>
+</div>
+        <%
+        }
+        }catch(Exception e){
+        }
+        %>
+                            
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery-3.4.0.min.js"></script>
   <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-
+  <script src="js/sweetalert2.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+    
+    $("#btn1").click(function (){
+        	swal("Borrado", "Has borrado los datos", "error");
+                timer: 100000;
+    	});
+
   </script>
 
 </body>

@@ -140,7 +140,9 @@
                 <td><%= e.getNameStatus() %></td>
                 <td>
                     <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
-                    <a href="MensajeController?accion=Eliminar&id=<%= e.getId() %>" " title="Eliminar Correo Permanente" class="btn btn-default btn-sm "> <i class="fa fa-ban text-danger"></i> </a>
+                    <a href="MensajeController?accion=EliminacionP&id=<%= e.getId() %>" " title="Eliminar Correo Permanente" class="btn btn-default btn-sm "> <i class="fa fa-ban text-danger"></i> </a>
+                    <a href="MensajeController?accion=Eliminar&id=<%= e.getId() %>" " title="Recuperar Correo" class="btn btn-default btn-sm "> <i class="fa fa-arrow-alt-circle-up text-success"></i> </a>
+                    
                     
                 </td>
             </tr>

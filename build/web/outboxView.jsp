@@ -131,8 +131,7 @@
                 <td><%= e.getDestino() %></td>
                 <td>
                     <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
-                    <a href="index.jsp" title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
-                    <a href="" title="Reenviar Correo" class="btn btn-default btn-sm "> <i class="fa fa-check-circle text-success"></i> </a>
+                    <a href="resendEmail.jsp?id=<%= e.getId()%>" title="Reenviar Correo" class="btn btn-default btn-sm "> <i class="fa fa-check-circle text-success"></i> </a>
                     
                 </td>
             </tr>
