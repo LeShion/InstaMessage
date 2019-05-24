@@ -18,6 +18,7 @@ public class Mensaje {
 	private String Asunto;
         private String Mensaje;
         private int Status;
+        private String nameStatus;
 	
 
     public Mensaje(){
@@ -27,8 +28,10 @@ public class Mensaje {
         Asunto = "";
     	Mensaje = "";
         Status = 0;
+        nameStatus="";
     }
-
+    
+    //CONSTRUCTOR PARA ENVIO DE MENSAJE
     public Mensaje(int id, String fecha, String Remitente, String Destinatario, String Asunto, String Mensaje, int Status) {
         this.id = id;
         this.fecha = fecha;
@@ -38,6 +41,20 @@ public class Mensaje {
         this.Mensaje = Mensaje;
         this.Status = Status;
     }
+
+    public Mensaje(int id, String fecha, String Remitente, String Destinatario, String Asunto, String Mensaje, int Status, String nameStatus) {
+        this.id = id;
+        this.fecha = fecha;
+        this.Remitente = Remitente;
+        this.Destinatario = Destinatario;
+        this.Asunto = Asunto;
+        this.Mensaje = Mensaje;
+        this.Status = Status;
+        this.nameStatus = nameStatus;
+    }
+    
+    
+    
 
     public Mensaje(int aInt, String string, String string0, String string1, String string2, double aDouble) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -75,6 +92,11 @@ public class Mensaje {
 	public String getFecha() {
 		return fecha;
 	}
+
+    public String getNameStatus() {
+        return nameStatus;
+    }
+        
 	
         //---------------Setters-------------------//
         
@@ -104,6 +126,12 @@ public class Mensaje {
         public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+
+    public void setNameStatus(String nameStatus) {
+        this.nameStatus = nameStatus;
+    }
+        
+        
         
         //----------------------------------//
         
@@ -113,7 +141,7 @@ public class Mensaje {
             Db_Connection dbconn=new Db_Connection();
             Connection myconnection= dbconn.Connection();
 
-            String sqlString="INSERT INTO Correo (fecha,Remitente,Destinatario,Asunto,Mensaje,Status) VALUES ('"+fecha+"','"+Remitente+"','"+Destinatario+"@instam.com"+"','"+Asunto+"','"+Mensaje+"','"+Status+"')";
+            String sqlString="INSERT INTO Correo (fecha,Remitente,Destinatario,Asunto,Mensaje,Status) VALUES ('"+fecha+"','"+Remitente+"','"+Destinatario+"@instam.com"+"','"+Asunto+"','"+Mensaje+"','"+Status+"') INSERT INTO Enviados (status_enviado) VALUES ('"+ Status+"') INSERT INTO Recibidos (Id_status_recibidos) VALUES ('"+ 2+"')";
             
             Statement myStatement = myconnection.createStatement();
             
@@ -127,6 +155,54 @@ public class Mensaje {
     
         }
         
+        //----------------------------------//
+        public void EditStatus()
+    {
+        
+        try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
+           
+            PreparedStatement ps1 = myconnection.prepareStatement("update Recibidos set Id_status_recibidos=? where Id_correo_recibidos =? ");
+                
+            ps1.setInt(1, Status);
+            ps1.setInt(2, id);
+        
+            ps1.executeUpdate();
+            
+        }catch(SQLException e){
+            
+        } 
+    }
+        
+        //----------------------------------//
+        public void EliminarMensaje()
+    {
+        
+        try
+        {    
+            Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
+
+            String sqlString="INSERT INTO Eliminados (Id_correo_eliminado,status_eliminado) VALUES ('"+id+"','"+Status+"') ";
+            PreparedStatement ps1 = myconnection.prepareStatement("delete from Recibidos where id_correo_recibidos =? ");
+                
+            ps1.setInt(1, id);             
+            ps1.executeUpdate();  
+
+            
+            Statement myStatement = myconnection.createStatement();
+            
+            try
+            {    
+                myStatement.executeUpdate(sqlString);
+                myStatement.close();
+                myconnection.close();
+            } catch (SQLException ex) {}
+        } catch (SQLException ex) {}  
+    
+    }
         //----------------------------------//
         
         public void GetMessage(){

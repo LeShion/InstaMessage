@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="beans.Mensaje"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="beans.User"%>
 <!DOCTYPE html>
@@ -96,6 +98,60 @@
             
 </div>
 <div class="info-container">
+    
+    <div align="center">
+      <div class="col-lg-8">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Ingresa correo">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </div><br>
+    
+    <div class=col-md-14>
+    
+    <form id="form-list-client">
+
+    <table class="table table-bordered table-condensed table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Fecha de Recibido</th>
+                <th>Asunto</th>
+                <th>Remitente</th>
+                <th>Estado</th> 
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <%
+            ArrayList<Mensaje> lista =(ArrayList<Mensaje>) request.getAttribute("lista");
+            for(int i=0; i<lista.size(); i++){
+                Mensaje e = lista.get(i);
+                
+               
+
+        %>
+        <tbody id="form-list-client-body">
+            <tr>
+                <td><%= e.getFecha() %></td>
+                <td><%= e.getAsunto() %></td>
+                <td><%= e.getRemitente() %></td>
+                <td><%= e.getNameStatus() %></td>
+                <td>
+                    <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
+                    <a href="MensajeController?accion=Eliminar&id=<%= e.getId() %>" " title="Eliminar Correo Permanente" class="btn btn-default btn-sm "> <i class="fa fa-ban text-danger"></i> </a>
+                    
+                </td>
+            </tr>
+            <%
+            }
+            %>
+        </tbody>
+    </table>
+    </form>
+
+    </div>
         
 </div>
     <!-- /#page-content-wrapper -->

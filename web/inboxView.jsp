@@ -24,6 +24,7 @@
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/all.css" rel="stylesheet" type="text/css"/>
+  <script src="js/sweetalert.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -51,7 +52,7 @@
         </div><br>
         
       <div class="list-group list-group-flush">
-        <a href="inboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
+        <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="outboxView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
         <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
         <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
@@ -121,9 +122,10 @@
     <table class="table table-bordered table-condensed table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>Fecha</th>
+                <th>Fecha de Recibido</th>
                 <th>Asunto</th>
                 <th>Remitente</th>
+                <th>Estado</th> 
                 <th>Acción</th>
             </tr>
         </thead>
@@ -132,27 +134,34 @@
             for(int i=0; i<lista.size(); i++){
                 Mensaje e = lista.get(i);
                 
-                String usuario1=e.getDestino().toString();
-                String usuario2=user_of_InstaMessage.getUser().toString();
+               if(request.getAttribute("lista2")!=null){
+               String clave = Integer.toString(e.getId());
+                if(request.getAttribute("lista2").equals(clave)){
+                    
                 
-                if(usuario1.equals(usuario2))
-                {
-
+        %>
+        <script>
+      
+                swal("De: "+'<%= e.getRemitente()%>', '<%= e.getMensaje()%>', "success");
+          
+        </script>
+        <%
+        }}
         %>
         <tbody id="form-list-client-body">
             <tr>
                 <td><%= e.getFecha() %></td>
                 <td><%= e.getAsunto() %></td>
                 <td><%= e.getRemitente() %></td>
+                <td><%= e.getNameStatus() %></td>
                 <td>
-                    <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
-                    <a href="index.jsp" title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
-                    <a href="" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
-                    <a href="" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
+                    <a href="MensajeController?accion=BandejaEntrada&id=<%= e.getId() %>" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
+                    <a href="MensajeController?accion=Eliminar&id=<%= e.getId() %>" " title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
+                    <a href="MensajeController?accion=Importante&id=<%= e.getId() %>" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
+                    <a href="MensajeController?accion=Urgente&id=<%= e.getId() %>" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
                 </td>
             </tr>
             <%
-            }
             }
             %>
         </tbody>
@@ -170,6 +179,11 @@
   <!-- Bootstrap core JavaScript --> 
   <script src="js/jquery-3.4.0.min.js"></script>
   <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+  <script src="js/popper.min.js" type="text/javascript"></script>
+
+        <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>-->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
   <!-- Menu Toggle Script -->
   <script>

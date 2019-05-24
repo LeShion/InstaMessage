@@ -129,7 +129,7 @@
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary btn-lg" name="accion" value="EnviarNuevo">Enviar</button>
-                                <button type="reset" class="btn btn-danger btn-lg">Borrar</button>
+                                <button id="btn1" type="reset" class="btn btn-danger btn-lg">Borrar</button>
                             </div>
                         </div>
                 </form>
@@ -138,18 +138,26 @@
     <!-- /#page-content-wrapper -->
 
 </div>
+                            
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery-3.4.0.min.js"></script>
   <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-
+  <script src="js/sweetalert2.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+    
+    $("#btn1").click(function (){
+        	swal("Borrado", "Has borrado los datos", "error");
+                timer: 100000;
+    	});
+
   </script>
 
 </body>

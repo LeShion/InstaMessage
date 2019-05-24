@@ -63,9 +63,12 @@ public class LoginController extends HttpServlet
                 }else if(accion.equals("recuperar")){
                     if(User.recoveryPassword(request.getParameter("user"),request.getParameter("pSecreta"),request.getParameter("rSecreta")))
                 {             
-
+                    User us = new User();
+                    us.setUser(String.valueOf(request.getParameter("user")+"@instam.com"));
+                    us.GetUser();
                     
-                    request.setAttribute("result", "CONTRASEÑA");
+                    
+                    request.setAttribute("result", us.getPwd());
                     RequestDispatcher rd1 = request.getRequestDispatcher("Recover_password.jsp");
                     rd1.forward(request,response);              
 

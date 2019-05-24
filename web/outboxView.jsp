@@ -109,25 +109,36 @@
     <table class="table table-bordered table-condensed table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>Fecha</th>
+                <th>Fecha de Envio</th>
                 <th>Asunto</th>
-                <th>Remitente</th>
+                <th>Destinatario</th>
                 <th>Acción</th>
             </tr>
         </thead>
+        <%
+            ArrayList<Mensaje> lista =(ArrayList<Mensaje>) request.getAttribute("lista");
+            for(int i=0; i<lista.size(); i++){
+                Mensaje e = lista.get(i);
+                
+               
+
+        %>
 
         <tbody id="form-list-client-body">
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td><%= e.getFecha() %></td>
+                <td><%= e.getAsunto() %></td>
+                <td><%= e.getDestino() %></td>
                 <td>
                     <a href="index.jsp" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
                     <a href="index.jsp" title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
-                    <a href="" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
-                    <a href="" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>
+                    <a href="" title="Reenviar Correo" class="btn btn-default btn-sm "> <i class="fa fa-check-circle text-success"></i> </a>
+                    
                 </td>
             </tr>
+            <%
+            }
+            %>
         </tbody>
     </table>
     </form>

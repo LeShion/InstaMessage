@@ -6,6 +6,7 @@
 package controllers;
 
 import beans.Mensaje;
+import beans.User;
 import database.Db_Connection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,15 +61,23 @@ public class MensajeController extends HttpServlet {
             
            String accion = request.getParameter("accion");
            if(accion.equals("EnviarNuevo")){
-               msj.setStatus(3);
+               msj.setStatus(1);
                 msj.NuevoMensaje();
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request,response);
                
            }else if(accion.equals("BandejaEntrada")){
                     try{
-               Connection cnx = Db_Connection.Connection();
-               PreparedStatement sta = cnx.prepareStatement("select * from Correo order by fecha DESC  ");
+                    HttpSession sessionUser=request.getSession(false);  
+                    String us=(String)sessionUser.getAttribute("user");
+
+                    User user_of_InstaMessage = new User();
+                    user_of_InstaMessage.setUser(us);
+                    user_of_InstaMessage.GetUser();
+                    String usuario = user_of_InstaMessage.getUser();
+                                  
+                    Connection cnx = Db_Connection.Connection();
+                    PreparedStatement sta = cnx.prepareStatement("select Id_correo,fecha,Remitente,Destinatario,Asunto,Mensaje,Id_status_recibidos,Nom_stat from Correo INNER JOIN Recibidos on Correo.Id_correo = Recibidos.Id_correo_recibidos INNER JOIN Estatus on Recibidos.Id_status_recibidos = Estatus.id_status where Destinatario='"+usuario+"' order by fecha DESC");
                     ResultSet rs= sta.executeQuery();
                     
                     ArrayList<Mensaje> lista = new ArrayList<Mensaje>();
@@ -79,9 +89,14 @@ public class MensajeController extends HttpServlet {
                                     rs.getString(4),
                                     rs.getString(5),
                                     rs.getString(6),
-                                    rs.getInt(7));
+                                    rs.getInt(7),
+                                    rs.getString(8));
                         lista.add(e);
                     }
+               
+                    String clave = request.getParameter("id");
+                    
+                    request.setAttribute("lista2", clave);
                     
                     request.setAttribute("lista", lista);
                     
@@ -91,9 +106,96 @@ public class MensajeController extends HttpServlet {
                
               
                }else if(accion.equals("BandejaSalida")){
-               
-                  request.getRequestDispatcher("outboxView.jsp").forward(request, response);
+                   try{
+                    HttpSession sessionUser=request.getSession(false);  
+                    String us=(String)sessionUser.getAttribute("user");
+
+                    User user_of_InstaMessage = new User();
+                    user_of_InstaMessage.setUser(us);
+                    user_of_InstaMessage.GetUser();
+                    String usuario = user_of_InstaMessage.getUser();
+                                  
+                    Connection cnx = Db_Connection.Connection();
+                    PreparedStatement sta = cnx.prepareStatement("select Correo.*, Estatus.Nom_stat from Correo join Estatus on Correo.Status = Estatus.Id_status where Remitente='"+usuario+"' order by fecha DESC");
+                    ResultSet rs= sta.executeQuery();       
                     
+                    ArrayList<Mensaje> lista = new ArrayList<Mensaje>();
+                    
+                    while(rs.next()){
+                        Mensaje e = new Mensaje(rs.getInt(1),
+                                    rs.getString(2),
+                                    rs.getString(3),
+                                    rs.getString(4),
+                                    rs.getString(5),
+                                    rs.getString(6),
+                                    rs.getInt(7),
+                                    rs.getString(8));
+                        lista.add(e);
+                    }
+               
+                    
+                    request.setAttribute("lista", lista);
+                    
+                    request.getRequestDispatcher("outboxView.jsp").forward(request, response);
+               }catch(Exception e){} 
+                    
+               }else if(accion.equals("Eliminados")){
+                    try{
+                    HttpSession sessionUser=request.getSession(false);  
+                    String us=(String)sessionUser.getAttribute("user");
+
+                    User user_of_InstaMessage = new User();
+                    user_of_InstaMessage.setUser(us);
+                    user_of_InstaMessage.GetUser();
+                    String usuario = user_of_InstaMessage.getUser();
+                                  
+                    Connection cnx = Db_Connection.Connection();
+                    PreparedStatement sta = cnx.prepareStatement("select Id_correo,fecha,Remitente,Destinatario,Asunto,Mensaje,status_eliminado,Nom_stat from Correo INNER JOIN Eliminados on Correo.Id_correo = Eliminados.Id_correo_eliminado INNER JOIN Estatus on Eliminados.status_eliminado = Estatus.id_status where Destinatario='"+usuario+"' order by fecha DESC");
+                    ResultSet rs= sta.executeQuery();
+                    
+                    ArrayList<Mensaje> lista = new ArrayList<Mensaje>();
+                    
+                    while(rs.next()){
+                        Mensaje e = new Mensaje(rs.getInt(1),
+                                    rs.getString(2),
+                                    rs.getString(3),
+                                    rs.getString(4),
+                                    rs.getString(5),
+                                    rs.getString(6),
+                                    rs.getInt(7),
+                                    rs.getString(8));
+                        lista.add(e);
+                    }
+               
+                    
+                    request.setAttribute("lista", lista);
+                    
+                    request.getRequestDispatcher("removedMailsView.jsp").forward(request, response);
+               }catch(Exception e){}
+               
+               
+              
+               }else if(accion.equals("Eliminar")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    msj.setId(id);
+                    msj.setStatus(6);
+                    msj.EliminarMensaje();
+                    RequestDispatcher rd = request.getRequestDispatcher("MensajeController?accion=BandejaEntrada");
+                    rd.forward(request,response);
+               }else if(accion.equals("Importante")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    msj.setId(id);
+                    msj.setStatus(4);
+                    msj.EditStatus();
+                    RequestDispatcher rd = request.getRequestDispatcher("MensajeController?accion=BandejaEntrada");
+                    rd.forward(request,response);
+               }else if(accion.equals("Urgente")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    msj.setId(id);
+                    msj.setStatus(5);
+                    msj.EditStatus();
+                    RequestDispatcher rd = request.getRequestDispatcher("MensajeController?accion=BandejaEntrada");
+                    rd.forward(request,response);
                }
             
             
