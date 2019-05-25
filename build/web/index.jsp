@@ -18,7 +18,7 @@
   <!-- Custom styles -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
   <link href="css/all.css" rel="stylesheet" type="text/css"/>
-
+  <link rel="shortcut icon" href="">
 </head>
 
 <body>
@@ -50,8 +50,8 @@
         <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="MensajeController?accion=BandejaSalida" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
         <a href="MensajeController?accion=Eliminados" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
-        <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
-        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a>
+        <!--    <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
+        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a> -->
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -103,8 +103,8 @@
             donde podras tener toda tu información al alcance de un click. </p>
     <br>
     <p>En nuestra plataforma puedes acceder a todos tus correos desde nuestro menu principal,
-    donde puedes encontrar tu "Bandeja de Entrada", "Bandeja de Salida", tus "Correos Eliminados",
-    La "Clasificacion" y tus "Borradores". Ya nada se perderá entre tus correos!</p>
+    donde puedes encontrar tu "Bandeja de Entrada", "Bandeja de Salida", tus "Correos Eliminados" y
+    La "Clasificacion" de los mismos. Ya nada se perderá entre tus correos!</p>
     
     <img src="imagen/umg.png" width="200" height="200" alt=""/>
 </div>

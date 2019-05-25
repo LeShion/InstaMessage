@@ -198,6 +198,7 @@ public class MensajeController extends HttpServlet {
                }else if(accion.equals("respuesta")){
                     msj.setRemitente(usuario);
                     msj.setAsunto(request.getParameter("asunto"));
+                    msj.setRespuesta(request.getParameter("mensajeR"));
                     msj.setStatus(1);
                     msj.ResponderMensaje();
                     RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

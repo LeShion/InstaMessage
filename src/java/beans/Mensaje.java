@@ -19,6 +19,7 @@ public class Mensaje {
         private String Mensaje;
         private int Status;
         private String nameStatus;
+        private String respuesta;
 	
 
     public Mensaje(){
@@ -29,6 +30,7 @@ public class Mensaje {
     	Mensaje = "";
         Status = 0;
         nameStatus="";
+        respuesta="";
     }
     
     //CONSTRUCTOR PARA ENVIO DE MENSAJE
@@ -93,9 +95,14 @@ public class Mensaje {
 		return fecha;
 	}
 
-    public String getNameStatus() {
-        return nameStatus;
-    }
+        public String getNameStatus() {
+            return nameStatus;
+        }
+
+        public String getRespuesta() {
+           return respuesta;
+        }      
+        
         
 	
         //---------------Setters-------------------//
@@ -127,10 +134,13 @@ public class Mensaje {
 		this.fecha = fecha;
 	}
 
-    public void setNameStatus(String nameStatus) {
-        this.nameStatus = nameStatus;
-    }
+        public void setNameStatus(String nameStatus) {
+            this.nameStatus = nameStatus;
+        }
         
+        public void setRespuesta(String respuesta) {
+            this.respuesta = respuesta;
+        }
         
         
         //----------------------------------//
@@ -161,8 +171,11 @@ public class Mensaje {
         {    
             Db_Connection dbconn=new Db_Connection();
             Connection myconnection= dbconn.Connection();
-
-            String sqlString="INSERT INTO Correo (fecha,Remitente,Destinatario,Asunto,Mensaje,Status) VALUES ('"+fecha+"','"+Remitente+"','"+Destinatario+"','"+Asunto+"','"+Mensaje+"','"+Status+"') INSERT INTO Enviados (status_enviado) VALUES ('"+ Status+"') INSERT INTO Recibidos (Id_status_recibidos) VALUES ('"+ 2+"')";
+            
+            char n1=13;
+            char n2=10;
+            
+            String sqlString="INSERT INTO Correo (fecha,Remitente,Destinatario,Asunto,Mensaje,Status) VALUES ('"+fecha+"','"+Remitente+"','"+Destinatario+"','"+Asunto+"','"+Mensaje+ n1+n2 + n1+n2+ " R:" +respuesta+"','"+Status+"') INSERT INTO Enviados (status_enviado) VALUES ('"+ Status+"') INSERT INTO Recibidos (Id_status_recibidos) VALUES ('"+ 2+"')";
             
             Statement myStatement = myconnection.createStatement();
             

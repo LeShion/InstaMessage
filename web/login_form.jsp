@@ -22,8 +22,11 @@
                 <img src="imagen/password.png" width="30" height="30" alt=""/>
                 <input type="password" name="pwd" placeholder="Contraseña" value="<jsp:getProperty name="user" property="pwd"/>">
                 
-                <input type="submit" name="accion" value="Entrar">
-                
+              
+                <div class="twoToneCenter">
+                     <button class="twoToneButton" type="submit" name="accion" value="Entrar">ENTRAR</button>
+                </div>
+               
                 <br><br>
                 <a href="register_form.jsp">Registrate</a>
                 <a href="Recover_password.jsp">¿Has olvidado tu contraseña?</a> 
@@ -32,4 +35,23 @@
         </div>
         
     </body>
+    <script>
+            $(function(){
+
+            var twoToneButton = document.querySelector('.twoToneButton');
+
+            twoToneButton.addEventListener("click", function() {
+                twoToneButton.innerHTML = "CARGANDO";
+                twoToneButton.classList.add('spinning');
+
+              setTimeout( 
+                    function  (){  
+                        twoToneButton.classList.remove('spinning');
+                        twoToneButton.innerHTML = "ENTRAR";
+
+                    }, 6000);
+            }, false);
+
+        });
+    </script>
 </html>

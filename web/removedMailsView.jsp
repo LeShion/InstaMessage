@@ -51,8 +51,8 @@
         <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="MensajeController?accion=BandejaSalida" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
         <a href="MensajeController?accion=Eliminados" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
-        <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
-        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a></div>
+        
+      </div>
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -102,10 +102,7 @@
     <div align="center">
       <div class="col-lg-8">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Ingresa correo">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">Buscar</button>
-          </span>
+            <input id="searchTerm" type="text" class="form-control" placeholder="Busca por Asunto, Fecha o Remitente ! Solo Escribe lo que quieras buscar!" onkeyup="doSearch()">
         </div>
       </div>
     </div><br>
@@ -210,6 +207,43 @@
           }
         }
     </script>
+    
+    <script>
+		function doSearch()
+		{
+			var tableReg = document.getElementById('SortT');
+			var searchText = document.getElementById('searchTerm').value.toLowerCase();
+			var cellsOfRow="";
+			var found=false;
+			var compareWith="";
+ 
+			// Recorremos todas las filas con contenido de la tabla
+			for (var i = 1; i < tableReg.rows.length; i++)
+			{
+				cellsOfRow = tableReg.rows[i].getElementsByTagName('TD');
+				found = false;
+				// Recorremos todas las celdas
+				for (var j = 0; j < cellsOfRow.length && !found; j++)
+				{
+					compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+					// Buscamos el texto en el contenido de la celda
+					if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
+					{
+						found = true;
+					}
+				}
+				if(found)
+				{
+					tableReg.rows[i].style.display = '';
+				} else {
+					// si no ha encontrado ninguna coincidencia, esconde la
+					// fila de la tabla
+					tableReg.rows[i].style.display = 'none';
+				}
+			}
+		}
+     </script>
+    
 </body>
 
 </html>

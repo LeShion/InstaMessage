@@ -115,10 +115,7 @@
     <div align="center">
       <div class="col-lg-8">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Ingresa correo">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">Buscar</button>
-          </span>
+            <input id="searchTerm" type="text" class="form-control" placeholder="Busca por Asunto, Fecha, Remitente o Estado ! Solo Escribe lo que quieras buscar!" onkeyup="doSearch()">
         </div>
       </div>
     </div><br>
@@ -167,13 +164,14 @@
                     </p>
                     <p>
                       <strong>Asunto: </strong>
-                      <input id="email" name="asunto" type="text" value="<%= e.getAsunto() %>" readonly="readonly" class="form-control"
+                      <input id="email" name="asunto" type="text" value="<%= e.getAsunto() %>" readonly="readonly" class="form-control">
                     </p>
                     
                     
                     <div class="md-form">
                     <strong>Mensaje: </strong>
                     <textarea type="text" id="form79textarea" class="md-textarea form-control" readonly="readonly" rows="2"><%= e.getMensaje() %></textarea>
+                    <input style="display: none" id="email" name="mensajeR" type="text" value="<%= e.getMensaje() %>" readonly="readonly" class="form-control">
                     </div>
                     
                   </div>
@@ -282,6 +280,43 @@
           }
         }
     </script>
+    
+        <script>
+		function doSearch()
+		{
+			var tableReg = document.getElementById('SortT');
+			var searchText = document.getElementById('searchTerm').value.toLowerCase();
+			var cellsOfRow="";
+			var found=false;
+			var compareWith="";
+ 
+			// Recorremos todas las filas con contenido de la tabla
+			for (var i = 1; i < tableReg.rows.length; i++)
+			{
+				cellsOfRow = tableReg.rows[i].getElementsByTagName('TD');
+				found = false;
+				// Recorremos todas las celdas
+				for (var j = 0; j < cellsOfRow.length && !found; j++)
+				{
+					compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+					// Buscamos el texto en el contenido de la celda
+					if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
+					{
+						found = true;
+					}
+				}
+				if(found)
+				{
+					tableReg.rows[i].style.display = '';
+				} else {
+					// si no ha encontrado ninguna coincidencia, esconde la
+					// fila de la tabla
+					tableReg.rows[i].style.display = 'none';
+				}
+			}
+		}
+     </script>
+    
 </body>
 
 </html>

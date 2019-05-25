@@ -26,8 +26,12 @@ body {
 }
 
 #page-content-wrapper {
-  min-width: 100vw;
-  background: url(../imagen/indexback2.jpg);
+    min-width: 100vw;
+    background: url(../imagen/indexback2.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 #page-content-wrapper .info-container{

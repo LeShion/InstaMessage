@@ -3,7 +3,11 @@
     padding: 0px;
 }
 body{
-    background: url(../imagen/fondo2.jpg);
+    background: url(../imagen/fondo4.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 #contenedor1{
     background: rgba(0,0,0,.6);
@@ -90,3 +94,28 @@ body{
     font-size: 35px;
     color: #36A0FF;
 }
+
+  .twoToneButton{
+    cursor: pointer;
+    text-align:center;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1C2833;
+    border-radius: 6px;
+    border: 2px solid #1C2833;
+    display: inline-block;
+  }
+  .twoToneButton:hover{
+    color: #ffffff;
+    background-color: #1C2833;
+  }
+  
+  .twoToneCenter{
+      margin-left: 36%;
+      display:inline-block;
+      text-align:center;
+          
+  }
