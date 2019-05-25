@@ -5,7 +5,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
         
         <title>Formulario de Registro</title>
     </head>
@@ -36,6 +37,9 @@
                     <option value="" disabled selected>Pregunta Secreta</option>
                     <option value="Nombre de mascota favorita">Nombre de mascota favorita</option>
                     <option value="Mejor amigo de la infancia">Mejor amigo de la infancia</option>
+                    <option value="Equipo de futbol favorito"> Equipo de futbol favorito</option>
+                    <option value="Sabor favorito de helado"> Sabor favorito de helado</option>
+                    <option value="Marca de Auto favorita"> Marca de Auto favorita</option>
                 </select>
                 <label>Pregunta Secreta</label>
                 
@@ -50,21 +54,25 @@
                 if (request.getAttribute("result")!=null)
                         {
                 %>
-            
-                <div class="md-form">
-                    <br>
-                    <input type="text" name="pwd" value="<%=request.getAttribute("result")%>" readonly="" class="form-control">
-                    <label>Password</label>
-                </div><br>
+                
+                  <script>		        				
+                        swal("Contraseña Encontrada", "<%=request.getAttribute("result")%>", "success");
+                  </script>
                 <%
-                }
+                }if(request.getAttribute("result")=="vacio"){
+                %>
+                  <script>		        				
+                        swal("Datos Invalidos", "Intenta Nuevamente", "warning");
+                  </script>
+                <%
+                }    
                 %>
                
                 <div class="form-row">
                     <div class="col">
                         <!-- First name -->
                         <div class="md-form">
-                             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="accion" value="recuperar">Registrar</button>
+                             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="accion" value="recuperar">Verificar</button>
                         </div>
                     </div>
                     <div class="col">
@@ -97,11 +105,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/popper.min.js"></script>
-    
-    <script src="js/sweetalert.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-  
-
     
     </body>
 </html>
