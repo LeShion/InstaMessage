@@ -50,7 +50,7 @@
       <div class="list-group list-group-flush">
         <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="MensajeController?accion=BandejaSalida" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
-        <a href="removedMailsView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
+        <a href="MensajeController?accion=Eliminados" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
         <a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
         <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a></div>
     </div>
@@ -114,14 +114,14 @@
     
     <form id="form-list-client">
 
-    <table class="table table-bordered table-condensed table-hover">
+    <table id="SortT" class="table table-striped table-bordered table-sm">
         <thead class="thead-dark">
             <tr>
-                <th>Fecha de Recibido</th>
-                <th>Asunto</th>
-                <th>Remitente</th>
-                <th>Estado</th> 
-                <th>Acción</th>
+                <th onclick="sortTable(0)" class="th-sm">Fecha de Recibido</th>
+                <th onclick="sortTable(1)" class="th-sm">Asunto</th>
+                <th onclick="sortTable(2)" class="th-sm">Remitente</th>
+                <th onclick="sortTable(3)" class="th-sm">Estado</th> 
+                <th onclick="sortTable(4)" class="th-sm">Acción</th>
             </tr>
         </thead>
         <%
@@ -172,7 +172,44 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
-
+  <script>
+        function sortTable(n) {
+          var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+          table = document.getElementById("SortT");
+          switching = true;
+          dir = "asc";
+          while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[n];
+              y = rows[i + 1].getElementsByTagName("TD")[n];
+              if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                  shouldSwitch = true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+              switchcount ++;
+            } else {
+              if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+              }
+            }
+          }
+        }
+    </script>
 </body>
 
 </html>
