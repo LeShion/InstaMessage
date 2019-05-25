@@ -73,7 +73,9 @@ public class LoginController extends HttpServlet
                     rd1.forward(request,response);              
 
                 }else{
-                    out.println("ERROR");
+                    request.setAttribute("result", "vacio");
+                    RequestDispatcher rd1 = request.getRequestDispatcher("Recover_password.jsp");
+                    rd1.forward(request,response);       
                 }
                     
                 }

@@ -131,7 +131,11 @@
                
                 <select name="pSecreta" class="form-control">
                     <option value="<%= user_of_InstaMessage.getPsecreta()%>" selected><%=user_of_InstaMessage.getPsecreta()%></option>
+                    <option value="Nombre de mascota favorita">Nombre de mascota favorita</option>
                     <option value="Mejor amigo de la infancia">Mejor amigo de la infancia</option>
+                    <option value="Equipo de futbol favorito"> Equipo de futbol favorito</option>
+                    <option value="Sabor favorito de helado"> Sabor favorito de helado</option>
+                    <option value="Marca de Auto favorita"> Marca de Auto favorita</option>
                 </select>
                 <label>Pregunta Secreta</label>
                 

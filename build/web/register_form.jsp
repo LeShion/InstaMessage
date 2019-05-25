@@ -6,6 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/sweetalert.min.js" type="text/javascript"></script>
+        
         <title>Formulario de Registro</title>
     </head>
     <body>
@@ -85,7 +87,7 @@
                     <div class="col">
                         <!-- First name -->
                         <div class="md-form">
-                             <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="accion" value="insertar">Registrar</button>
+                            <button  id="btnSA_1" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" name="accion" value="insertar">Registrar</button>
                         </div>
                     </div>
                     <div class="col">
@@ -114,6 +116,17 @@
         </div>
 
     </div>
-                        
+          
+
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+    <script src="js/popper.min.js" type="text/javascript"></script>
+    
+    <script>
+        $("#btnSA_1").click(function (){			        				
+			swal("Registro con Éxito", "Ahora Puedes Iniciar Sesión", "success");
+    	});
+    </script>
+    
     </body>
 </html>
