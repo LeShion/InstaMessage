@@ -2,6 +2,16 @@
     margin: 0px;
     padding: 0px;
 }
+
+
+#Contenedor{
+    background: url(../imagen/logout.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 body{
     background: url(../imagen/fondo4.jpg);
     background-position: center center;
@@ -9,6 +19,8 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+
+
 #contenedor1{
     background: rgba(0,0,0,.6);
     width: 460px;
