@@ -5,17 +5,27 @@
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body id="Contenedor">
-        <div>
+        
+        
+        
+        <div class="msj">
             
             <% session.invalidate(); %>
         <br><br>
         <br><br>
         <br><br>
         <br><br>
-        <center><b>Sesion cerrada con Exito!!</b></center>
+        <center><h2>Sesion cerrada con Exito!!</h2></center>
+        <br><br>
+        <br><br>
+        
+        <center><a href="login_form.jsp" class="enlaceboton">Iniciar Sesion</a></center>
+         <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <center><h2>Vuelve Pronto!!</h2></center>
         <br>
-        <center><a href="login_form.jsp">Iniciar Sesion</a></center>
-            
         </div>
     </body>
 </html>
