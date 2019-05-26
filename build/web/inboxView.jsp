@@ -63,8 +63,10 @@
         <a href="MensajeController?accion=BandejaEntrada" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/1.png" width="32" height="32" alt=""/>  Bandeja de Entrada</a>
         <a href="MensajeController?accion=BandejaSalida" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/2.png" width="32" height="32" alt=""/>  Bandeja de Salida</a>
         <a href="MensajeController?accion=Eliminados"  class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/3.png" width="32" height="32" alt=""/>  Correos Eliminados</a>
-        <!--<a href="draftView.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/4.png" width="32" height="32" alt=""/>  Borradores</a>
-        <a href="Contacts.jsp" class="list-group-item list-group-item-action bg-dark text-white"><img src="imagen/5.png" width="32" height="32" alt=""/>Contactos</a>--> 
+       
+      </div>
+      <div align="center" class="sidebar-heading"> 
+          <img src="imagen/umg.png" width="200" height="200" alt=""/>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -208,7 +210,7 @@
                 <td><%= e.getRemitente() %></td>
                 <td><%= e.getNameStatus() %></td>
                 <td>
-                    <a href="MensajeController?accion=Mostrar_Mensajes&id=<%= e.getId() %>" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
+                    <a href="MensajeController?accion=Mostrar_Mensajes&id=<%= e.getId() %>&id2=<%= e.getStatus() %>" title="Ver Correo" class="btn btn-default btn-sm "> <i class="fa fa-envelope-open text-primary"></i> </a>                    
                     <a href="MensajeController?accion=Eliminar&id=<%= e.getId() %>" " title="Eliminar Correo" class="btn btn-default btn-sm "> <i class="fa fa-trash-alt text-danger"></i> </a>
                     <a href="MensajeController?accion=Importante&id=<%= e.getId() %>" title="Marcar Como Importante" class="btn btn-default btn-sm "> <i class="fa fa-star text-warning"></i> </a>
                     <a href="MensajeController?accion=Urgente&id=<%= e.getId() %>" title="Marcar Como Urgenge" class="btn btn-default btn-sm "> <i class="fa fa-exclamation-circle text-success"></i> </a>

@@ -103,10 +103,13 @@ public class MensajeController extends HttpServlet {
                }else if(accion.equals("Mostrar_Mensajes")){
                     try{
                     int id = Integer.parseInt(request.getParameter("id"));
-                    msj.setId(id);
-                    msj.setStatus(3);
-                    msj.EditStatus();
-
+                    int id2 = Integer.parseInt(request.getParameter("id2"));
+                    if(id2==2){
+                        msj.setId(id);
+                        msj.setStatus(3);
+                        msj.EditStatus();
+                    }
+                    
                     String clave = request.getParameter("id");
                     
                     request.setAttribute("lista2", clave);
